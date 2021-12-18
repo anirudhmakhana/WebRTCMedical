@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 
 
@@ -14,11 +15,16 @@ def login_user(request):
             # Redirect to a success page.
             return redirect('home')
         else:
-            messages.success(request, "There was an error loggin in, plese try again.")
+            messages.success(request, "There was an error logging in, plese try again.")
             return redirect('login')
     else:
         return render(request, 'login.html', {})
 
 
 def logout_user(request):
-    pass
+    logout(request)
+    return redirect('')
+
+
+def register_user(request):
+    return render(request, 'signUp.html', {})
